@@ -1,0 +1,16 @@
+{
+  "name": "factory-local",
+  "owner": {
+    "name": "Craig Chihururu"
+  },
+  "metadata": {
+    "description": "Local marketplace for the Factory software-delivery plugin."
+  },
+  "plugins": [
+    {
+      "name": "factory",
+      "source": "./plugins/factory",
+      "description": "Coordinate software changes with focused capability skills, task playbooks, patch-specific verification, and safe delivery."
+    }
+  ]
+}

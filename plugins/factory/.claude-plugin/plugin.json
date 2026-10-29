@@ -1,0 +1,19 @@
+{
+  "name": "factory",
+  "version": "2.1.1",
+  "description": "Coordinate software changes with focused capability skills, task playbooks, patch-specific verification, and safe delivery.",
+  "author": {
+    "name": "Craig Chihururu"
+  },
+  "homepage": "https://craigchihururu.notion.site/Factory-V2-1-3f851dc3a8b481cf918ce864bb2741ea",
+  "keywords": [
+    "factory",
+    "workflow",
+    "requirements",
+    "implementation",
+    "design",
+    "testing",
+    "code-review",
+    "release"
+  ]
+}

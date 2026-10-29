@@ -1,0 +1,10 @@
+{
+  "name": "factory",
+  "displayName": "Factory",
+  "version": "2.1.1",
+  "description": "Coordinate software changes with focused capability skills, task playbooks, patch-specific verification, and safe delivery.",
+  "author": {
+    "name": "Craig Chihururu"
+  },
+  "keywords": ["factory", "workflow", "skills"]
+}
