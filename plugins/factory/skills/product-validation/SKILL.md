@@ -19,6 +19,8 @@ Determine whether the completed product solves the accepted problem, not merely 
 
 ## Output
 
+For reusable launch, health, interaction, evidence and cleanup contracts, use [Project verification](../../references/verification.md). Report deterministic checks, code review, interface review and the original product outcome separately; none substitutes for another.
+
 Outcome-based acceptance verdict, observed behavior, reproduction of failures, and remaining limitations.
 
 ## Finish

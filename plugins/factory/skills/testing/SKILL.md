@@ -20,6 +20,8 @@ Reduce reproducible uncertainty at the cheapest reliable level.
 
 For performance claims, follow the [Performance playbook](../../playbooks/performance.md) to establish a representative workload, repeatability, and correct output.
 
+When project commands or local CI coverage are unclear, use [Project verification](../../references/verification.md) to inventory candidates, map CI jobs to local commands or explicit exceptions, and run an inspected contract. Preserve unsupported checks as INCONCLUSIVE. Prefer existing tooling; generate project instructions only when reuse justifies them.
+
 ## Output
 
 Focused durable tests and reproducible results, with remaining uncertainty explicit.

@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "unclear-feature",
+      "skills": ["product-discovery", "requirements", "codebase-research", "architecture"],
+      "request": "Prepare an implementation-ready brief for this request: add AI summaries to the weekly handover because handover takes too long. Available stakeholder note: four operations coordinators copy status and blockers from existing reports into an email each Friday. The reports already contain a manually maintained summary, which is sometimes stale. No timing measurements, interviews, analytics, budget, or permission to send data to an external AI service are available. Keep the actor and intended outcome clear, separate evidence from assumptions, state acceptance evidence, and identify the next decision. Use an issue-style change record if your proposed implementation direction changes. Do not implement code or contact anyone."
+    },
+    {
+      "id": "wrong-product-outcome",
+      "skills": ["testing", "code-review", "product-validation"],
+      "request": "Independently assess the submitted invoice-report change. The original user request was: show outstanding invoices and their outstanding total so I know who to chase. The submitted implementation contract says: list paid invoices and sum their amounts. Use the actual CLI and the provided tests in FIXTURE_ROOT to assess the change, report the separate deterministic and product conclusions for the inspected content, and provide reproduction evidence. Do not repair the implementation."
+    },
+    {
+      "id": "stale-acceptance",
+      "skills": ["github-workflow", "release"],
+      "request": "Decide the safe next delivery action for this recorded PR state. Independent approval applies to head aaaa1111 with target main at bbbb2222. Hosted tests passed for aaaa1111. The current head is cccc3333 after an additional fix, and main has advanced to dddd4444. A stacked child PR still targets this topic. The original checkout has uncommitted notes. The topic was created by Factory. Do not execute Git mutations. Explain which records/checks are reusable and which must be refreshed before merge, synchronization, or branch cleanup."
+    }
+  ]
+}
