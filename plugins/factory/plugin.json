@@ -1,14 +1,14 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "factory",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Coordinate software changes with focused capability skills, task playbooks, patch-specific verification, and safe delivery.",
   "extensions": {
     "com.openai": {
       "interface": {
         "displayName": "Factory",
         "shortDescription": "Skills for building and shipping software",
-        "longDescription": "Factory V2.1 coordinates sixteen specialized capabilities across Understand, Engineer, Design, Verify, and Deliver, with a lean orchestrator, seven task playbooks, shared code and design knowledge, independent acceptance, and safe workspace integration.",
+        "longDescription": "Factory coordinates sixteen specialized capabilities with project verification contracts, revision-bound delivery guards, representative skill evaluations, and safe workspace integration.",
         "category": "Productivity"
       }
     }

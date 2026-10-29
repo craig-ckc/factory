@@ -25,6 +25,8 @@ Delete only safely merged factory-created topic branches/worktrees. Check dirty 
 
 ## Output
 
+Use [Revision acceptance and safe delivery](../../references/delivery.md) when recording exact-patch acceptance, resuming interrupted work, handling stacked PRs, or proving cleanup safety. Its guard is read-only and requires current, positive evidence; uncertain integration preserves the branch.
+
 A traceable issue/PR history and safe branch/worktree state.
 
 ## Finish

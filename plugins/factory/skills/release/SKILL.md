@@ -21,6 +21,8 @@ Ship an independently accepted revision through the repository's actual delivery
 
 ## Output
 
+Use [Revision acceptance and safe delivery](../../references/delivery.md) for checkpoint fields, changed-head/target invalidation, dependency ordering, local synchronization, squash/rebase constraints and post-release adoption evidence. Refresh actual state on resume and immediately before any cleanup; a prior guard result is not lasting deletion authority.
+
 Merge/deployment outcome, tested revision and environment, local workspace state, and precise unresolved blockers.
 
 ## Finish

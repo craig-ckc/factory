@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "project": "factory",
+  "launch": null,
+  "health": [
+    {"name": "verification-cli", "argv": ["python3", "plugins/factory/scripts/verification.py", "--help"], "timeout_seconds": 10}
+  ],
+  "interaction": [
+    {"name": "discover-project", "argv": ["python3", "plugins/factory/scripts/verification.py", "discover", "."], "timeout_seconds": 10}
+  ],
+  "checks": [
+    {"name": "packaging-contracts", "argv": ["python3", "scripts/check.py"], "timeout_seconds": 30},
+    {"name": "contracts-and-behavior", "argv": ["python3", "-m", "unittest", "discover", "-s", "tests", "-v"], "timeout_seconds": 120}
+  ],
+  "cleanup": [
+    {"name": "cli-no-service-cleanup", "argv": ["python3", "-c", "print('No persistent service or temporary project data; evidence retained')"], "timeout_seconds": 10}
+  ],
+  "ci_exceptions": []
+}

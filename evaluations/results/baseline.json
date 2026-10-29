@@ -1,0 +1,28 @@
+{
+  "revision": "647d6b0885caf7c3e47f907a7898daf07ac2090f",
+  "evaluator": "independent-behavior-grader:/root/behavior_grading (2026-10-29)",
+  "dataset_sha256": "c619980afb81bb6d220aebe2e7f5c80212770bc842a66cce7e05355f7189f9eb",
+  "cases": [
+    {
+      "id": "unclear-feature",
+      "verdict": "PASS",
+      "reason": "PASS for the supplied brief-only case: identifies the four operations coordinators and handover effort/accuracy outcome; separates the supplied note from timing, freshness and AI-benefit hypotheses; proposes a representative timing/correction and source-freshness comparison; defines outcome-oriented acceptance; records a conditional source/draft direction with rationale while leaving scope and external processing decisions pending. No research, implementation or contact is fabricated.",
+      "artifact": "baseline.md",
+      "sha256": "456dc88841537bf4bb492ddcfc8b9e91f6e49b736d18cc100ecb9b48eb4a4fc8"
+    },
+    {
+      "id": "wrong-product-outcome",
+      "verdict": "PASS",
+      "reason": "PASS for assessment behavior, while the inspected product correctly FAILS. The retained baseline subprocess rerun executes the actual CLI and supplied unittest (both exit 0) and original-outcome assertion (exit 1); independent evaluator execution corroborates paid A/100 versus outstanding B/C totaling 75 on identical fixture hashes. It separates deterministic success from product failure, withholds approval, routes the contract mismatch to Requirements, and makes no repair. Historical execution provenance is limited to unsigned retained records.",
+      "artifact": "baseline.md",
+      "sha256": "456dc88841537bf4bb492ddcfc8b9e91f6e49b736d18cc100ecb9b48eb4a4fc8"
+    },
+    {
+      "id": "stale-acceptance",
+      "verdict": "PASS",
+      "reason": "PASS for the recorded-state decision: preserves old review/tests as historical evidence and requires current acceptance/checks for cccc3333 against advanced main dddd4444. It refuses immediate merge, dirty-checkout synchronization and cleanup; preserves the notes and topic while the child depends on it, and makes no Git mutation. No live repository acceptance is claimed.",
+      "artifact": "baseline.md",
+      "sha256": "456dc88841537bf4bb492ddcfc8b9e91f6e49b736d18cc100ecb9b48eb4a4fc8"
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "case_id": "wrong-product-outcome",
+  "captured_at_utc": "2026-10-29T18:37:56.927082+00:00",
+  "platform": "darwin",
+  "python_executable": "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+  "fixture_root": "/Users/Craig/Developer/Projects/factory/evaluations/fixtures/invoices",
+  "verification_reference": {
+    "path": "/Users/Craig/Developer/Projects/factory/plugins/factory/references/verification.md",
+    "initial_inspected_sha256": "887484e49c22e8ed34701c1700c7967cc64941a5bdee7e610e248ab12cfc7d92",
+    "reread_inspected_sha256": "779795f93ced1cbea0e181b717ef6e71c6bfc904d5076cd081a10a76e6b80650",
+    "note": "Reference reread after its Windows cleanup limitation was added; initial digest preserved as historical inspection identity."
+  },
+  "fixture_sha256_before": {
+    "report.py": "642bd95cd04cff52ebfbf4bdde07c0f9dd10ca118283b950681899f99efe8d77",
+    "test_report.py": "49647379259cd28e42a2dcaa316341953b88039b11d48b83d802cff29430d645"
+  },
+  "fixture_sha256_after": {
+    "report.py": "642bd95cd04cff52ebfbf4bdde07c0f9dd10ca118283b950681899f99efe8d77",
+    "test_report.py": "49647379259cd28e42a2dcaa316341953b88039b11d48b83d802cff29430d645"
+  },
+  "fixture_unchanged": true,
+  "commands": [
+    {
+      "name": "provided_tests",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-m",
+        "unittest",
+        "-v"
+      ],
+      "cwd": "/Users/Craig/Developer/Projects/factory/evaluations/fixtures/invoices",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "test_paid_report_contract (test_report.ReportTests.test_paid_report_contract) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n",
+      "fixture_sha256": {
+        "report.py": "642bd95cd04cff52ebfbf4bdde07c0f9dd10ca118283b950681899f99efe8d77",
+        "test_report.py": "49647379259cd28e42a2dcaa316341953b88039b11d48b83d802cff29430d645"
+      },
+      "environment_override": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "timeout_seconds": 30
+    },
+    {
+      "name": "actual_cli",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "report.py"
+      ],
+      "cwd": "/Users/Craig/Developer/Projects/factory/evaluations/fixtures/invoices",
+      "returncode": 0,
+      "stdout": "{\"invoices\": [{\"id\": \"A\", \"status\": \"paid\", \"amount\": 100}], \"total\": 100}\n",
+      "stderr": "",
+      "fixture_sha256": {
+        "report.py": "642bd95cd04cff52ebfbf4bdde07c0f9dd10ca118283b950681899f99efe8d77",
+        "test_report.py": "49647379259cd28e42a2dcaa316341953b88039b11d48b83d802cff29430d645"
+      },
+      "environment_override": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "timeout_seconds": 30
+    },
+    {
+      "name": "original_outcome_assertion",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-c",
+        "import json\nimport subprocess\nimport sys\ncli_argv = [sys.executable, \"report.py\"]\nproc = subprocess.run(cli_argv, capture_output=True, text=True, check=False, timeout=15)\nprint(\"CLI argv: \" + json.dumps(cli_argv))\nprint(\"CLI returncode: \" + str(proc.returncode))\nprint(\"CLI stdout: \" + proc.stdout.rstrip())\nprint(\"CLI stderr: \" + proc.stderr.rstrip())\nassert proc.returncode == 0, \"CLI must exit successfully before evaluating its product result\"\nactual = json.loads(proc.stdout)\nactual_ids = [row[\"id\"] for row in actual[\"invoices\"]]\nexpected_ids = [\"B\", \"C\"]\nexpected_total = 75\nprint(\"Expected outstanding IDs: \" + repr(expected_ids) + \"; actual IDs: \" + repr(actual_ids))\nprint(\"Expected outstanding total: \" + str(expected_total) + \"; actual total: \" + str(actual[\"total\"]))\nassert actual_ids == expected_ids and actual[\"total\"] == expected_total, \"Original outstanding-invoice outcome failed: expected B/C and 75; observed \" + repr(actual_ids) + \" and \" + str(actual[\"total\"])\n"
+      ],
+      "cwd": "/Users/Craig/Developer/Projects/factory/evaluations/fixtures/invoices",
+      "returncode": 1,
+      "stdout": "CLI argv: [\"/Library/Frameworks/Python.framework/Versions/3.14/bin/python3\", \"report.py\"]\nCLI returncode: 0\nCLI stdout: {\"invoices\": [{\"id\": \"A\", \"status\": \"paid\", \"amount\": 100}], \"total\": 100}\nCLI stderr: \nExpected outstanding IDs: ['B', 'C']; actual IDs: ['A']\nExpected outstanding total: 75; actual total: 100\n",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 17, in <module>\n    assert actual_ids == expected_ids and actual[\"total\"] == expected_total, \"Original outstanding-invoice outcome failed: expected B/C and 75; observed \" + repr(actual_ids) + \" and \" + str(actual[\"total\"])\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Original outstanding-invoice outcome failed: expected B/C and 75; observed ['A'] and 100\n",
+      "fixture_sha256": {
+        "report.py": "642bd95cd04cff52ebfbf4bdde07c0f9dd10ca118283b950681899f99efe8d77",
+        "test_report.py": "49647379259cd28e42a2dcaa316341953b88039b11d48b83d802cff29430d645"
+      },
+      "environment_override": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "timeout_seconds": 30
+    }
+  ],
+  "conclusions": {
+    "provided_deterministic_contract": "PASS",
+    "code_review_against_original_request": "FAIL",
+    "cli_interface_behavior_against_original_request": "FAIL",
+    "original_product_outcome": "FAIL"
+  }
+}

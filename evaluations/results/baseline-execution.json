@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "case_id": "wrong-product-outcome",
+  "run_kind": "baseline_machine_readable_rerun",
+  "original_request": "Independently assess the submitted invoice-report change. The original user request was: show outstanding invoices and their outstanding total so I know who to chase. The submitted implementation contract says: list paid invoices and sum their amounts. Use the actual CLI and the provided tests in FIXTURE_ROOT to assess the change, report the separate deterministic and product conclusions for the inspected content, and provide reproduction evidence. Do not repair the implementation.",
+  "baseline_skill_root": "/Users/Craig/Documents/Codex/2026-10-29/ca/work/factory-run/baseline/plugins/factory/skills",
+  "baseline_skill_revision": "647d6b0885caf7c3e47f907a7898daf07ac2090f",
+  "baseline_revision_provenance": "Supplied baseline snapshot identity; the extracted skill snapshot was not a Git checkout.",
+  "fixture_root": "/Users/Craig/Developer/Projects/factory/evaluations/fixtures/invoices",
+  "fixture_sha256_before": {
+    "report.py": "642bd95cd04cff52ebfbf4bdde07c0f9dd10ca118283b950681899f99efe8d77",
+    "test_report.py": "49647379259cd28e42a2dcaa316341953b88039b11d48b83d802cff29430d645"
+  },
+  "fixture_sha256_after": {
+    "report.py": "642bd95cd04cff52ebfbf4bdde07c0f9dd10ca118283b950681899f99efe8d77",
+    "test_report.py": "49647379259cd28e42a2dcaa316341953b88039b11d48b83d802cff29430d645"
+  },
+  "fixture_content_unchanged": true,
+  "executions": [
+    {
+      "label": "actual_cli",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "report.py"
+      ],
+      "cwd": "/Users/Craig/Developer/Projects/factory/evaluations/fixtures/invoices",
+      "environment_overrides": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at_utc": "2026-10-29T18:37:33.196700+00:00",
+      "finished_at_utc": "2026-10-29T18:37:33.233686+00:00",
+      "returncode": 0,
+      "stdout": "{\"invoices\": [{\"id\": \"A\", \"status\": \"paid\", \"amount\": 100}], \"total\": 100}\n",
+      "stderr": ""
+    },
+    {
+      "label": "provided_tests",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-m",
+        "unittest",
+        "-v",
+        "test_report.py"
+      ],
+      "cwd": "/Users/Craig/Developer/Projects/factory/evaluations/fixtures/invoices",
+      "environment_overrides": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at_utc": "2026-10-29T18:37:33.233739+00:00",
+      "finished_at_utc": "2026-10-29T18:37:33.307359+00:00",
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "test_paid_report_contract (test_report.ReportTests.test_paid_report_contract) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.000s\n\nOK\n"
+    },
+    {
+      "label": "original_outcome_cli_assertion",
+      "argv": [
+        "/Library/Frameworks/Python.framework/Versions/3.14/bin/python3",
+        "-c",
+        "import json\nimport subprocess\nimport sys\nobserved = json.loads(subprocess.check_output([sys.executable, 'report.py'], text=True))\nexpected = {'invoices': [{'id': 'B', 'status': 'unpaid', 'amount': 25}, {'id': 'C', 'status': 'unpaid', 'amount': 50}], 'total': 75}\nprint('Observed CLI:', json.dumps(observed, sort_keys=True))\nprint('Original-outcome expectation for supplied fixture:', json.dumps(expected, sort_keys=True))\nassert observed == expected, 'CLI does not show outstanding invoices B and C with outstanding total 75'\n"
+      ],
+      "cwd": "/Users/Craig/Developer/Projects/factory/evaluations/fixtures/invoices",
+      "environment_overrides": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "started_at_utc": "2026-10-29T18:37:33.307399+00:00",
+      "finished_at_utc": "2026-10-29T18:37:33.375738+00:00",
+      "returncode": 1,
+      "stdout": "Observed CLI: {\"invoices\": [{\"amount\": 100, \"id\": \"A\", \"status\": \"paid\"}], \"total\": 100}\nOriginal-outcome expectation for supplied fixture: {\"invoices\": [{\"amount\": 25, \"id\": \"B\", \"status\": \"unpaid\"}, {\"amount\": 50, \"id\": \"C\", \"status\": \"unpaid\"}], \"total\": 75}\n",
+      "stderr": "Traceback (most recent call last):\n  File \"<string>\", line 8, in <module>\n    assert observed == expected, 'CLI does not show outstanding invoices B and C with outstanding total 75'\n           ^^^^^^^^^^^^^^^^^^^^\nAssertionError: CLI does not show outstanding invoices B and C with outstanding total 75\n"
+    }
+  ],
+  "conclusions": {
+    "deterministic": {
+      "verdict": "PASS",
+      "scope": "The provided single test passes for the submitted paid-report contract."
+    },
+    "product": {
+      "verdict": "FAIL",
+      "scope": "The actual CLI returns paid invoice A with total 100, omitting unpaid invoices B and C and their outstanding total 75."
+    }
+  },
+  "limitations": [
+    "The fixture files are untracked; the SHA256 values identify the assessed content, not a committed fixture revision.",
+    "The fixture has fixed input data; this rerun does not establish broader invoice status, partial-payment, permission, or production behavior.",
+    "The original-outcome check uses the same real CLI and assertion as the first run, supplied through python -c rather than a shell heredoc."
+  ]
+}

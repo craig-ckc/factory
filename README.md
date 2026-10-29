@@ -2,7 +2,7 @@
 
 Shared agent plugin for building and shipping software: one orchestrator skill (`factory`), sixteen capability skills across Understand, Engineer, Design, Verify, and Deliver, seven task playbooks, and shared code/design references.
 
-This repository starts from the installed Factory **2.1.1** shared marketplace. The skills, playbooks, references, and plugin manifests are preserved from that base. Specification: [Factory V2.1](https://craigchihururu.notion.site/Factory-V2-1-3f851dc3a8b481cf918ce864bb2741ea).
+Factory **2.2.0** builds on the installed 2.1.1 shared marketplace with project verification contracts, revision-bound delivery guards, and representative skill evaluations. The existing skill names, playbooks and marketplace identity remain compatible. Specification: [Factory V2.1](https://craigchihururu.notion.site/Factory-V2-1-3f851dc3a8b481cf918ce864bb2741ea).
 
 Each harness reads its own manifest over the same `plugins/factory` tree:
 
@@ -64,3 +64,18 @@ codex plugin add factory@factory-local
 - `plugins/factory/playbooks/`: feature, bug fix, refactor, migration, investigation, performance, and shipping workflows.
 - `plugins/factory/references/`: shared code quality and interface design guidance.
 - `.agents/`, `.claude-plugin/`, `.cursor-plugin/`: marketplace manifests for the supported agents.
+- `plugins/factory/scripts/`: standard-library Python helpers for project verification and read-only delivery checks.
+- [evaluations](evaluations/README.md): repeatable behavioral requests, rubric and comparison evidence.
+- [remaining tasks](docs/remaining-tasks.md): implementation and acceptance record for the six supplied tasks.
+
+## Verify this repository
+
+With Python 3.10+ and Git available:
+
+```sh
+python3 scripts/check.py
+python3 -m unittest discover -s tests -v
+python3 plugins/factory/scripts/verification.py run . --manifest .factory/verification.json --evidence work/verification
+```
+
+Choose a fresh evidence directory for each run. The local checks match the portable CI commands; CI also runs on Linux, macOS and Windows. See [project verification](plugins/factory/references/verification.md), [safe delivery](plugins/factory/references/delivery.md), and [learning](plugins/factory/references/learning.md) when using those capabilities. Generated project skills are optional and reuse inspected project commands.

@@ -62,3 +62,5 @@ Record the starting branch, upstream, and uncommitted work; never assume `main`.
 ## Continuity
 
 For long runs, keep a small resumable checkpoint: goal, branch/worktree, completed evidence, open PRs, and next step. Prefer enforceable tests, lint, types, or architectural boundaries over ever-growing instruction files.
+
+Use [Learning and regression evaluation](../../references/learning.md) when observed failures justify a reusable improvement or before promoting material Factory revisions. Distinguish recurring history from seeded cases; compare representative baseline/candidate tasks and preserve successful behavior. Detailed checkpoint and exact-revision delivery mechanics belong to [GitHub Workflow](../github-workflow/SKILL.md) and [Release](../release/SKILL.md).
