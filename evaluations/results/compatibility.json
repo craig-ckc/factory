@@ -99,7 +99,7 @@
     "marketplace_validation": "PASS",
     "model_runtime": "INCONCLUSIVE",
     "reason": "claude auth status reports loggedIn false; no model invocation claimed",
-    "directory_publication": "N/A; private repository not submitted to catalog (license/icon requirements not part of local manifest acceptance)"
+    "directory_publication": "N/A: repository not submitted to a plugin catalog; catalog license/icon requirements are separate from local manifest validation"
   },
   "cursor": {
     "structural_manifest_contracts": "PASS",
@@ -140,5 +140,11 @@
   "limitations": [
     "Windows exited-leader descendant cleanup stays INCONCLUSIVE; POSIX-specific tests do not prove it",
     "Skill metadata/discovery does not prove unavailable provider model behavior"
-  ]
+  ],
+  "repository_visibility": {
+    "current": "PUBLIC",
+    "initial_validation": "PRIVATE",
+    "changed_on": "2026-10-29",
+    "authorization": "User explicitly requested public visibility to enable hosted CI"
+  }
 }
