@@ -9,8 +9,8 @@
   "plugins": [
     {
       "name": "factory",
-      "source": "./plugins/factory",
-      "description": "Coordinate software changes with focused capability skills, task playbooks, patch-specific verification, and safe delivery."
+      "source": "./",
+      "description": "Six focused skills for spec/review and build/verify loops, interface acceptance, and scoped delivery."
     }
   ]
 }
