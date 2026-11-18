@@ -8,7 +8,7 @@
       "name": "factory",
       "source": {
         "source": "local",
-        "path": "./plugins/factory"
+        "path": "./"
       },
       "policy": {
         "installation": "AVAILABLE",
