@@ -1,66 +1,51 @@
 ---
 name: factory
-description: Coordinate software changes by selecting relevant skills, requiring interface review for changes affecting visuals or UI behavior, driving evidence-based feedback loops, and preserving the starting workspace.
+description: Take a software task through spec/review and build/verify loops, returning failed assumptions to the spec before delivering the requested result.
 ---
 
-# Software Factory
+# Factory
 
-Use the skills needed to turn a problem into verified, maintainable software. Roles are responsibilities, not fixed agents or providers. Repository instructions and established conventions provide the project-specific context.
+Own the user's outcome from input to the requested handoff. Use the existing repository, tools, conventions, and task record. Keep the process proportional: a clear fix needs a short spec and focused proof, not a planning ceremony.
 
-## Defaults
+Read the relevant skill at the point it is needed. Factory owns sequencing and implementation; capabilities are responsibilities, not a roster of agents.
 
-- Prefer small, complete changes, clear contracts, and existing conventions.
-- Preserve the user's actual problem; revise the proposed solution when new evidence warrants it.
-- Verify observable behavior, not just that code builds.
-- Keep deterministic verification local where practical; use live environments for what only they can prove.
-- Add complexity, parallel agents, and artifacts only when they solve a real problem and delegation is permitted.
+## Input
 
-## Flow
+Establish the goal, available context, constraints, and delivery destination. Inspect the current work and starting branch/upstream; preserve pre-existing changes. Resume from current evidence rather than replaying a stale plan. Use an isolated branch or worktree where useful.
 
-Input → Define (spec ⇄ independent review) → Build (code ⇄ verify) → Deliver (validate → ship).
-Loop backward when evidence changes the scope. For small work, skip unnecessary ceremony.
+## Spec ↔ review
 
-Scope establishes the outcome; Review challenges it; Code builds; Verify checks; Test exercises the real result; Ship integrates and releases. Compose capabilities as needed, rather than assigning an agent to each skill.
+Use [Spec](../spec/SKILL.md) to define the smallest complete outcome and how to prove it. Resolve meaningful design uncertainty with [Design](../design/SKILL.md). Use [Review](../review/SKILL.md) to challenge the spec, then revise it until the outcome, constraints, and evidence are credible and no material finding remains open. Use independent review when available and permitted; disclose self-review.
 
-## Visual and interface acceptance
+A revised implementation approach within the authorized outcome does not need a new permission round. A consequential change to the user's intended product outcome does. Research-only or spec-only work stops at the requested deliverable.
 
-Any change that affects visuals or the behavior of a user interface requires [Interface Review](../interface-review/SKILL.md) before completion. Select capabilities from the full effect of the change, not just its task label or playbook. This gate applies to every playbook, including migrations and refactors, and to changes made without editing code. Small changes and reuse of existing components are not exemptions. An image replacement or an animation adjustment still needs review; these examples do not limit the scope of the rule.
+## Build ↔ verify
 
-Establish the intended experience and affected surfaces before implementation. Use [Interface Design](../interface-design/SKILL.md) when experience decisions are unresolved, and [UI Inspection](../ui-inspection/SKILL.md) to exercise the actual result. Scale review effort to the change without skipping it.
+Implement a complete, reviewable slice of the accepted spec. Prefer deleting or narrowing code to adding speculative layers. Preserve required contracts and migrate callers before removing old paths. The agent already knows how to code; use project instructions for implementation details and [task-specific proof](../../references/task-proof.md) for special constraints.
 
-Require both visual acceptance and functional verification for the changed result. Inspect the rendered interface in the relevant supported contexts, including behavior over time where affected. Verify that changed assets and dependencies actually work in those contexts; checking a URL or a source diff alone is not enough. Use [Testing](../testing/SKILL.md) for deterministic checks that complement the rendered review.
+Use [Verify](../verify/SKILL.md) against the original goal and current spec, and [Review](../review/SKILL.md) on the actual implementation. Changes to visuals or UI behavior must satisfy [Design's interface acceptance](../design/SKILL.md#interface-acceptance). Fix demonstrated defects and repeat the affected checks/review on the new content.
 
-Have a reviewer other than the implementer perform Interface Review when delegation is available and authorized. Otherwise perform a separate review pass and disclose that independent review was unavailable. Record the inspected revision, scope, evidence, and PASS/FAIL/INCONCLUSIVE verdict. Resolve introduced defects, including visual defects, and review the affected result again before marking the work complete. Missing evidence is INCONCLUSIVE, not PASS; a successful build or code review does not satisfy this gate.
+## The outer loop
 
-## Capability routing
-
-Read the relevant skill on demand; do not load the whole inventory.
-
-| Domain | Capabilities |
+| Evidence | Next action |
 | --- | --- |
-| Understand | [Product Discovery](../product-discovery/SKILL.md) for unclear problems; [Requirements](../requirements/SKILL.md) for agreed outcomes; [Codebase Research](../codebase-research/SKILL.md) for implementation paths; [Architecture](../architecture/SKILL.md) for consequential structure |
-| Engineer | [Implementation](../implementation/SKILL.md) for production changes; [Refactoring](../refactoring/SKILL.md) for behavior-preserving structural improvements |
-| Design | [Interface Design](../interface-design/SKILL.md) for experience decisions; [Interface Build](../interface-build/SKILL.md) for production translation; [Prototype](../prototype/SKILL.md) for disposable experiments; [UI Inspection](../ui-inspection/SKILL.md) for running states; [Interface Review](../interface-review/SKILL.md) for independent quality assessment |
-| Verify | [Testing](../testing/SKILL.md) for deterministic checks; [Product Validation](../product-validation/SKILL.md) for actual outcomes; [Code Review](../code-review/SKILL.md) for implementation risks |
-| Deliver | [GitHub Workflow](../github-workflow/SKILL.md) for repository evidence and history; [Release](../release/SKILL.md) for merge, deployment, recovery, and restoration |
+| Implementation fails a sound acceptance condition | Return to Build with the reproduction; verify the repair. |
+| Intended behavior is wrong, an assumption fails, or the chosen approach cannot be verified | Return to Spec with the evidence; revise and review before building again. |
+| Required proof is blocked by access, environment, or a human decision and no authorized equivalent is available | Preserve the checkpoint and report the exact blocker. |
+| Verification passes and review has no unresolved material finding on current content | Deliver to the requested destination. |
 
-Design and Engineering may iterate together. Discovery, Architecture, Prototype, and Refactoring are conditional capabilities, not mandatory stages. Performance remains a playbook.
+A return to Spec carries the original goal, failed observation, attempts, affected decisions, and still-valid evidence. Keep the same task; do not launch another Factory agent or recursively restart the workflow. The loops are feedback, not nested agent spawning.
 
-Choose one task playbook when useful: [Feature](../../playbooks/feature.md), [Bug Fix](../../playbooks/bug-fix.md), [Refactor](../../playbooks/refactor.md), [Migration](../../playbooks/migration.md), [Investigation](../../playbooks/investigation.md), [Performance](../../playbooks/performance.md), or [Shipping](../../playbooks/shipping.md). Adapt its sequence and proof to the task.
+## Progress and stopping
 
-## Records
+Keep a compact checkpoint for work that spans rounds or sessions: goal/spec revision, branch and inspected content, current loop, findings and dispositions, evidence, attempts, and next action. Reuse the existing issue/task or local note; no prescribed document template or new tracking system is needed.
 
-- GitHub Issue = living problem, intended outcome, accepted specification, and substantive decisions.
-- PR = exact implementation, tests, independent review, and supporting evidence.
-- Record when discovery materially changes the solution; obtain approval if it changes the intended product outcome.
-- Use existing local records when there is no GitHub workflow; do not introduce remote artifacts merely for ceremony.
+Default to three review passes per spec or implementation cycle, reviewing changed behavior and open findings after the first. Allow at most two returns from Build/Verify to Spec in one run. These limits are Factory defaults, not a claim about Theo's council. Count returns across revisions and resumes; changing the spec or reviewer does not reset the outer budget. Stop earlier when the same material finding survives two repair attempts without new evidence. The user can extend the budget. Nits alone do not justify another round. Budget exhaustion or disagreement leaves the work blocked or inconclusive, never approved.
 
-## Workspace integration
+Continue independent useful work while a genuine blocker is pending. If no authorized work remains, hand back the evidence and the smallest decision or capability needed to resume. Never weaken acceptance to get out of a loop.
 
-Record the starting branch, upstream, and uncommitted work; never assume `main`. Isolate work where useful and preserve pre-existing changes. Run relevant local CI-equivalent checks and obtain patch-specific independent acceptance where required. Respect approvals and protected branches; integrate to the intended target, synchronize and verify the original checkout, and clean only safe factory-created merged branches/worktrees. On blockers, preserve work and report the exact unfinished step. Detailed repository mechanics belong to GitHub Workflow and Release.
+## Deliver and learn
 
-## Continuity
+Use [Deliver](../deliver/SKILL.md) for the authorized handoff. Merge, deployment, and cleanup are separate destinations and conditions, not automatic consequences of running Factory.
 
-For long runs, keep a small resumable checkpoint: goal, branch/worktree, completed evidence, open PRs, and next step. Prefer enforceable tests, lint, types, or architectural boundaries over ever-growing instruction files.
-
-Use [Learning and regression evaluation](../../references/learning.md) when observed failures justify a reusable improvement or before promoting material Factory revisions. Distinguish recurring history from seeded cases; compare representative baseline/candidate tasks and preserve successful behavior. Detailed checkpoint and exact-revision delivery mechanics belong to [GitHub Workflow](../github-workflow/SKILL.md) and [Release](../release/SKILL.md).
+Use [learning and regression evaluation](../../references/learning.md) when an observed failure warrants a reusable improvement or when changing Factory itself. Prefer a test, type, boundary, or tool to an ever-growing instruction file. Preserve effective behavior while removing unnecessary process.

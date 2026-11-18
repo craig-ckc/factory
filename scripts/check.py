@@ -37,14 +37,14 @@ def check(root):
         except (ValueError, OSError) as exc:
             errors.append(f'{relative}: {exc}')
     skills = sorted(plugin.glob('skills/*/SKILL.md'))
-    if len(skills) != 17:
-        errors.append(f'Expected 17 skills; found {len(skills)}')
+    if not (plugin / 'skills/factory/SKILL.md').is_file():
+        errors.append('Missing Factory entry skill')
     for path in skills:
         text = path.read_text()
         match = re.match(r'\A---\nname: ([a-z0-9-]+)\ndescription: (.+)\n---\n', text)
         if not match or match.group(1) != path.parent.name:
             errors.append(f'{path.relative_to(root)}: invalid flat skill metadata')
-    for path in list(plugin.rglob('*.md')) + [root / 'README.md']:
+    for path in list(plugin.rglob('*.md')) + list((root / 'docs').rglob('*.md')) + [root / 'README.md']:
         if not path.is_file():
             errors.append(f'Missing {path}')
             continue

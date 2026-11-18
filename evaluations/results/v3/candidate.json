@@ -1,0 +1,70 @@
+{
+  "revision": "content-sha256:f7dc261f358b4828beb886f1ff42c2daad700f6c9b53f7fc2202c0243f98a533",
+  "evaluator": "Independent evaluation_judge agent; retained judgment.json",
+  "dataset_sha256": "60a7e04b4ea6aef86a4ac52d91e0c6b6905388ede793c20f4eb191cbb4203c2d",
+  "cases": [
+    {
+      "id": "unclear-feature",
+      "verdict": "PASS",
+      "reason": "candidate.md:7-17 identifies the coordinators and faster accurate handover outcome, separates stakeholder evidence from bottleneck/source assumptions, compares freshness/reuse and draft assembly, defines factual/freshness and measured-time acceptance, and records the proposed direction change. Consequential source/schema/success decisions remain open and external AI is excluded absent permission; no fabricated research appears.",
+      "artifact": "candidate.md",
+      "sha256": "9429c0eb07863dc9e1cb74bfdb927ea5e791ceca62a43f682006f99f67906fa5"
+    },
+    {
+      "id": "wrong-product-outcome",
+      "verdict": "PASS",
+      "reason": "candidate.md:21-83 retains CLI/test executions, one passing paid-contract test and the paid A/100 CLI output, separately concluding product FAIL against outstanding B/C totaling 75. It routes the contract and proof plan to Spec before later build without repair; this satisfies the Requirements responsibility regardless of label. Evaluator reproduction and fixture hashes agree.",
+      "artifact": "candidate.md",
+      "sha256": "9429c0eb07863dc9e1cb74bfdb927ea5e791ceca62a43f682006f99f67906fa5"
+    },
+    {
+      "id": "stale-acceptance",
+      "verdict": "PASS",
+      "reason": "candidate.md:88-92 rejects stale approval/checks for the changed head and target, preserves reusable historical reasoning and notes, refreshes current acceptance/checks/integration/dependencies before merge, and blocks dirty synchronization or branch deletion while the stacked child depends on it. No Git mutation is claimed.",
+      "artifact": "candidate.md",
+      "sha256": "9429c0eb07863dc9e1cb74bfdb927ea5e791ceca62a43f682006f99f67906fa5"
+    },
+    {
+      "id": "implementation-defect",
+      "verdict": "PASS",
+      "reason": "candidate.md:96-98 returns the first off-by-one repair to implementation, carries the failing reproduction, preserves the settled CSV spec, and requires repaired-content evidence for all filtered rows, stable order, UTF-8, affected checks and current implementation review. It does not reopen spec/discovery or request fresh permission.",
+      "artifact": "candidate.md",
+      "sha256": "9429c0eb07863dc9e1cb74bfdb927ea5e791ceca62a43f682006f99f67906fa5"
+    },
+    {
+      "id": "unverifiable-approach",
+      "verdict": "PASS",
+      "reason": "candidate.md:102-104 rejects daily aggregates and green unit tests as freshness proof, preserves the 30-second goal and valid limited evidence, and revises endpoint/caching/polling/failure strategy with credible end-to-end verification. It requires review and resolution of material findings before rebuilding within existing scope.",
+      "artifact": "candidate.md",
+      "sha256": "9429c0eb07863dc9e1cb74bfdb927ea5e791ceca62a43f682006f99f67906fa5"
+    },
+    {
+      "id": "external-proof-blocker",
+      "verdict": "PASS",
+      "reason": "candidate.md:108-110 leaves required hardware acceptance INCONCLUSIVE, preserves local results only within their scope, stops repeated missing-device setup and product requirement evasion, and hands back a resumable checkpoint with the exact capability and verification needed. It claims no unobserved device success.",
+      "artifact": "candidate.md",
+      "sha256": "9429c0eb07863dc9e1cb74bfdb927ea5e791ceca62a43f682006f99f67906fa5"
+    },
+    {
+      "id": "review-budget-resume",
+      "verdict": "PASS",
+      "reason": "candidate.md:114-116 stops the resumed run with unresolved data-preservation FAIL, preserves cumulative attempts, rejects spec/reviewer/restart resets, and hands back the violation, reproduction, evidence and required correction. It requires an extended budget for another cycle and does not weaken or approve acceptance.",
+      "artifact": "candidate.md",
+      "sha256": "9429c0eb07863dc9e1cb74bfdb927ea5e791ceca62a43f682006f99f67906fa5"
+    },
+    {
+      "id": "council-unavailable",
+      "verdict": "PASS",
+      "reason": "candidate.md:120-122 distinguishes available same-provider independent reviews and disclosed self-review from the requested three-provider council. It explicitly marks the council unmet and acceptance blocked/inconclusive, with no invented reviewers or launched tools.",
+      "artifact": "candidate.md",
+      "sha256": "9429c0eb07863dc9e1cb74bfdb927ea5e791ceca62a43f682006f99f67906fa5"
+    },
+    {
+      "id": "asset-only-interface",
+      "verdict": "PASS",
+      "reason": "candidate.md:126-130 keeps interface acceptance INCONCLUSIVE despite URL/CI success, requires actual rendered and time-based motion evidence across supported contexts, and hands off only the branch with evidence gaps explicit. It does not merge, publish, deploy or claim visually accepted status.",
+      "artifact": "candidate.md",
+      "sha256": "9429c0eb07863dc9e1cb74bfdb927ea5e791ceca62a43f682006f99f67906fa5"
+    }
+  ]
+}

@@ -1,56 +1,60 @@
 # Factory
 
-Shared agent plugin for building and shipping software: one orchestrator skill (`factory`), sixteen capability skills across Understand, Engineer, Design, Verify, and Deliver, seven task playbooks, and shared code/design references.
+Six skills for taking a software task from context to verified delivery. Factory coordinates two feedback loops and returns failed assumptions to the spec:
 
-Factory **2.2.0** builds on the installed 2.1.1 shared marketplace with project verification contracts, revision-bound delivery guards, and representative skill evaluations. The existing skill names, playbooks and marketplace identity remain compatible. Specification: [Factory V2.1](https://craigchihururu.notion.site/Factory-V2-1-3f851dc3a8b481cf918ce864bb2741ea).
-
-Each harness reads its own manifest over the same `plugins/factory` tree:
-
-| Harness | Marketplace | Plugin manifest |
-| --- | --- | --- |
-| Claude Code | `.claude-plugin/marketplace.json` | `plugins/factory/.claude-plugin/plugin.json` |
-| Codex | `.agents/plugins/marketplace.json` | `plugins/factory/plugin.json` |
-| Cursor | `.cursor-plugin/marketplace.json` | `plugins/factory/.cursor-plugin/plugin.json` |
-
-The marketplace identifier remains `factory-local` for compatibility with existing installations. Its name is independent of the GitHub repository name.
-
-## Install from this repository
-
-Clone the repository, then register the checkout with the agents you use:
-
-```sh
-gh repo clone craig-ckc/factory ~/Developer/Projects/factory
+```mermaid
+flowchart TD
+    I[User request and context] --> S[Spec]
+    S --> R[Review spec]
+    R -->|Revise| S
+    R -->|Ready| B[Build]
+    B --> V[Verify and review implementation]
+    V -->|Implementation defect| B
+    V -->|Failed premise or unverifiable approach| S
+    V -->|Accepted current content| D[Requested handoff]
+    R -->|Blocked or budget exhausted| H[Preserve evidence and hand back blocker]
+    V -->|Blocked or budget exhausted| H
 ```
 
-Claude Code:
+Factory **3.0.0** is a redesign candidate. It consolidates 17 skills into six and replaces seven overlapping playbooks with one task-proof reference. Existing verification scripts, delivery guards, design references, and marketplace identity remain. Old skill names are intentionally retired; see the [migration guide](docs/migration-v3.md).
+
+| Skill | When to use it |
+| --- | --- |
+| [factory](plugins/factory/skills/factory/SKILL.md) | Own a task through both loops and the authorized handoff. |
+| [spec](plugins/factory/skills/spec/SKILL.md) | Define an outcome and proof, or revise a failed assumption. |
+| [design](plugins/factory/skills/design/SKILL.md) | Shape, build, and inspect the actual interface. |
+| [review](plugins/factory/skills/review/SKILL.md) | Challenge a spec or implementation; coordinate independent review or a council. |
+| [verify](plugins/factory/skills/verify/SKILL.md) | Prove the original outcome and route failures to the right loop. |
+| [deliver](plugins/factory/skills/deliver/SKILL.md) | Hand off a branch, PR, merge, or deployment within the requested scope. |
+
+Implementation stays in Factory rather than a skill that repeats basic coding instructions. Skills load specialized references only as needed. Review has bounded rounds; exhausted retries, unavailable reviewers, and missing proof never become approval. Council provider/model preferences belong in project instructions, not hardcoded in the plugin.
+
+The [research and rationale](docs/research.md) compares Theo, Matt Pocock, and Potato using pinned primary sources, with Theo weighted most heavily. The two inner loops and outer return path come from Factory's intended workflow; the exact retry limits are Factory defaults.
+
+## Install
+
+Clone the branch or revision you intend to use:
 
 ```sh
-claude plugin marketplace add ~/Developer/Projects/factory
+git clone https://github.com/craig-ckc/factory.git
+cd factory
+# For this redesign candidate:
+git switch refactor/factory-recursive-loops
+```
+
+Register that checkout:
+
+```sh
+claude plugin marketplace add /absolute/path/to/factory
 claude plugin install factory@factory-local --scope user
-```
 
-Codex:
-
-```sh
-codex plugin marketplace add ~/Developer/Projects/factory
+codex plugin marketplace add /absolute/path/to/factory
 codex plugin add factory@factory-local
 ```
 
-For Cursor, use `.cursor-plugin/marketplace.json` as the marketplace manifest for this checkout.
+For Cursor, use `.cursor-plugin/marketplace.json` as the marketplace manifest. All three harness manifests point to the same `plugins/factory` tree. The marketplace identifier remains `factory-local`.
 
-The Codex marketplace uses repository-relative plugin paths, as described in the [official plugin format documentation](https://learn.chatgpt.com/docs/enterprise/plugin-management#supported-formats).
-
-## Develop and update
-
-Make changes under `plugins/factory`. For a plugin release, keep `version` synchronized in all three manifests:
-
-- `plugins/factory/plugin.json`
-- `plugins/factory/.claude-plugin/plugin.json`
-- `plugins/factory/.cursor-plugin/plugin.json`
-
-Use this checkout as the shared authoring location and register it as the marketplace source in each harness that should receive updates. Harness-specific cache folders are generated installations. The visual and interface acceptance gate in `plugins/factory/skills/factory/SKILL.md` applies across every playbook.
-
-After editing the registered source, refresh the installed copy:
+To refresh an existing registered source after switching revisions:
 
 ```sh
 claude plugin marketplace update factory-local
@@ -58,19 +62,11 @@ claude plugin update factory@factory-local
 codex plugin add factory@factory-local
 ```
 
-## Contents
+Check that the installed copy discovers the six current skills and no retired skills. Cache refresh and native harness behavior must be checked where that harness is available; manifest validation alone does not prove installation.
 
-- `plugins/factory/skills/`: Factory orchestration and sixteen capability skills.
-- `plugins/factory/playbooks/`: feature, bug fix, refactor, migration, investigation, performance, and shipping workflows.
-- `plugins/factory/references/`: shared code quality and interface design guidance.
-- `.agents/`, `.claude-plugin/`, `.cursor-plugin/`: marketplace manifests for the supported agents.
-- `plugins/factory/scripts/`: standard-library Python helpers for project verification and read-only delivery checks.
-- [evaluations](evaluations/README.md): repeatable behavioral requests, rubric and comparison evidence.
-- [remaining tasks](docs/remaining-tasks.md): implementation and acceptance record for the six supplied tasks.
+## Development and verification
 
-## Verify this repository
-
-With Python 3.10+ and Git available:
+Edit `plugins/factory`; keep its Codex, Claude Code, and Cursor manifest versions aligned. Python 3.10+ and Git are sufficient for the portable checks:
 
 ```sh
 python3 scripts/check.py
@@ -78,4 +74,6 @@ python3 -m unittest discover -s tests -v
 python3 plugins/factory/scripts/verification.py run . --manifest .factory/verification.json --evidence work/verification
 ```
 
-Choose a fresh evidence directory for each run. The local checks match the portable CI commands; CI also runs on Linux, macOS and Windows. See [project verification](plugins/factory/references/verification.md), [safe delivery](plugins/factory/references/delivery.md), and [learning](plugins/factory/references/learning.md) when using those capabilities. Generated project skills are optional and reuse inspected project commands.
+Use a fresh evidence directory each run. See [project verification](plugins/factory/references/verification.md) for optional reusable contracts and [safe delivery](plugins/factory/references/delivery.md) for revision-bound acceptance and branch protection checks. These scripts remain independent of the conversational loop; there is no new scheduler, state database, or hook.
+
+[Evaluations](evaluations/README.md) distinguish helper tests from actual agent behavior and preserve historical 2.2.0 receipts. The [previous implementation record](docs/remaining-tasks.md) is historical, not acceptance of this candidate.

@@ -47,6 +47,16 @@ class PackagingTests(unittest.TestCase):
 
     def test_broken_skill_reference_is_rejected(self):
         root = self.copy()
-        (root / 'plugins/factory/skills/testing/SKILL.md').write_text(
-            (root / 'plugins/factory/skills/testing/SKILL.md').read_text() + '\n[missing](../../absent.md)\n')
+        (root / 'plugins/factory/skills/verify/SKILL.md').write_text(
+            (root / 'plugins/factory/skills/verify/SKILL.md').read_text() + '\n[missing](../../absent.md)\n')
+        self.assertTrue(checker.check(root))
+
+    def test_missing_entry_skill_is_rejected(self):
+        root = self.copy()
+        (root / 'plugins/factory/skills/factory/SKILL.md').unlink()
+        self.assertTrue(checker.check(root))
+
+    def test_broken_migration_link_is_rejected(self):
+        root = self.copy()
+        (root / 'docs/broken.md').write_text('[retired skill](../plugins/factory/skills/requirements/SKILL.md)\n')
         self.assertTrue(checker.check(root))

@@ -1,6 +1,6 @@
 # Revision acceptance and safe delivery
 
-Use with GitHub Workflow and Release for integration, interrupted runs, stacked PRs, or branch cleanup. Honor the user's authorization and repository policy; a helper result does not grant merge/delete permission.
+Use with [Deliver](../skills/deliver/SKILL.md) for integration, interrupted runs, stacked PRs, or branch cleanup. Honor the user's authorization and repository policy; a helper result does not grant merge/delete permission.
 
 ## Checkpoint and resume
 

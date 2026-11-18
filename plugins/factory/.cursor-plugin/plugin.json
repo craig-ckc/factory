@@ -1,14 +1,18 @@
 {
   "name": "factory",
   "displayName": "Factory",
-  "version": "2.2.0",
-  "description": "Coordinate software changes with focused capability skills, task playbooks, patch-specific verification, and safe delivery.",
+  "version": "3.0.0",
+  "description": "Turn context into verified software through spec/review and build/verify loops, with scoped design and delivery.",
   "author": {
     "name": "Craig Chihururu"
   },
   "keywords": [
     "factory",
     "workflow",
-    "skills"
+    "spec",
+    "design",
+    "review",
+    "verify",
+    "deliver"
   ]
 }

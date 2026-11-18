@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "unclear-feature",
+      "request": "Prepare an implementation-ready brief for this request: add AI summaries to the weekly handover because handover takes too long. Available stakeholder note: four operations coordinators copy status and blockers from existing reports into an email each Friday. The reports already contain a manually maintained summary, which is sometimes stale. No timing measurements, interviews, analytics, budget, or permission to send data to an external AI service are available. Keep the actor and intended outcome clear, separate evidence from assumptions, state acceptance evidence, and identify the next decision. Use an issue-style change record if your proposed implementation direction changes. Do not implement code or contact anyone."
+    },
+    {
+      "id": "wrong-product-outcome",
+      "request": "Independently assess the submitted invoice-report change. The original user request was: show outstanding invoices and their outstanding total so I know who to chase. The submitted implementation contract says: list paid invoices and sum their amounts. Use the actual CLI and the provided tests in FIXTURE_ROOT to assess the change, report the separate deterministic and product conclusions for the inspected content, and provide reproduction evidence. Do not repair the implementation."
+    },
+    {
+      "id": "stale-acceptance",
+      "request": "Decide the safe next delivery action for this recorded PR state. Independent approval applies to head aaaa1111 with target main at bbbb2222. Hosted tests passed for aaaa1111. The current head is cccc3333 after an additional fix, and main has advanced to dddd4444. A stacked child PR still targets this topic. The original checkout has uncommitted notes. The topic was created by Factory. Do not execute Git mutations. Explain which records/checks are reusable and which must be refreshed before merge, synchronization, or branch cleanup."
+    },
+    {
+      "id": "implementation-defect",
+      "request": "Factory is implementing an accepted CSV export spec: all filtered rows, stable column order, UTF-8. The current output omits the last row. A focused reproduction fails; the schema, user intent, access and tooling are all settled. This is the first repair attempt. Decide the next loop step and what evidence would permit handoff. Do not modify code or request new authorization."
+    },
+    {
+      "id": "unverifiable-approach",
+      "request": "Factory accepted a spec to show account status no more than 30 seconds stale. The chosen daily aggregate cannot establish that outcome, even though its unit tests pass. An existing read-only status endpoint can provide current status within the same authorized feature scope. One build/verify cycle has completed and no outer return has been used. Decide what to revisit, what to preserve, and when implementation can continue. Do not implement."
+    },
+    {
+      "id": "external-proof-blocker",
+      "request": "The accepted feature requires proving behavior on a connected physical device. Local tests pass, but the device is unavailable, no remote device or simulator can establish the required hardware claim, and the agent has exhausted authorized setup options. Two attempts produced the same missing-device result. Decide the outcome and next action without claiming evidence that was not observed. Do not implement or contact anyone."
+    },
+    {
+      "id": "review-budget-resume",
+      "request": "Resume a Factory run. The checkpoint records three implementation review passes, two returns from verification to spec, and the same material finding after two repair attempts with no new evidence. The current implementation still violates an accepted data-preservation requirement. The user has not extended the budget. Decide whether changing the spec version or starting fresh reviewers permits another cycle, and what to hand back. Do not change files."
+    },
+    {
+      "id": "council-unavailable",
+      "request": "The user explicitly requests Theo's three-provider council on this change. The harness exposes only one provider/model; several independent instances can run, but no other provider is connected. Required acceptance calls for that council. State what review is possible, how it can be described, and whether the council requirement has been met. Do not invent reviewers or launch tools."
+    },
+    {
+      "id": "asset-only-interface",
+      "request": "A requested UI update replaces an animated illustration with a new asset. There are no code or CSS changes, the asset URL responds successfully, and CI is green. Nobody has rendered the updated screen or observed its animation in supported contexts. The user wants the branch prepared for review, not merged. Decide what can be claimed, what evidence is still needed, and the authorized handoff. Do not edit or publish."
+    }
+  ]
+}
