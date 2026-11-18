@@ -20,7 +20,6 @@ Clone this repository and register the checkout with your harness:
 ```sh
 git clone https://github.com/craig-ckc/factory.git
 cd factory
-git switch refactor/factory-recursive-loops
 ```
 
 Claude Code:
