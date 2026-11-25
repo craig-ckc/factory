@@ -15,7 +15,9 @@ Skills live directly in `skills/`. The root manifests let Claude Code, Codex, an
 
 ## Install
 
-Claude Code installs straight from this repository:
+Claude Code and Codex install straight from this repository.
+
+Claude Code:
 
 ```sh
 claude plugin marketplace add craig-ckc/factory
@@ -24,21 +26,22 @@ claude plugin install factory@factory --scope user
 
 For Claude Code cloud sessions, add the marketplace `craig-ckc/factory` at claude.ai/customize/plugins and install `factory` from it.
 
-Codex and Cursor register a local checkout:
-
-```sh
-git clone https://github.com/craig-ckc/factory.git
-cd factory
-```
-
 Codex:
 
 ```sh
-codex plugin marketplace add /absolute/path/to/factory
+codex plugin marketplace add craig-ckc/factory
 codex plugin add factory@factory
 ```
 
-For Cursor, use `.cursor-plugin/marketplace.json` from this checkout. Refresh an existing installation after updating the source and confirm that the six skills are discovered.
+Cursor registers a local checkout:
+
+```sh
+git clone https://github.com/craig-ckc/factory.git
+```
+
+Then use `.cursor-plugin/marketplace.json` from that checkout.
+
+After pushing changes, refresh existing installations (`claude plugin marketplace update factory`, `codex plugin marketplace upgrade`) and confirm that the six skills are discovered.
 
 ## Maintaining Factory
 
