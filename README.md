@@ -11,29 +11,31 @@ Six agent skills for turning a request into verified software. Two inner loopsâ€
 | [verify](skills/verify/SKILL.md) | Prove the original outcome and route failures. |
 | [deliver](skills/deliver/SKILL.md) | Hand off a branch, PR, merge, or deployment within scope. |
 
-Skills live directly in `skills/`. The root manifests let Claude Code, Codex, and Cursor install that same source as `factory@factory-local`. Model preferences and project-specific tooling belong in the project using Factory.
+Skills live directly in `skills/`. The root manifests let Claude Code, Codex, and Cursor install that same source as `factory@factory`. Model preferences and project-specific tooling belong in the project using Factory.
 
 ## Install
 
-Clone this repository and register the checkout with your harness:
+Claude Code installs straight from this repository:
+
+```sh
+claude plugin marketplace add craig-ckc/factory
+claude plugin install factory@factory --scope user
+```
+
+For Claude Code cloud sessions, add the marketplace `craig-ckc/factory` at claude.ai/customize/plugins and install `factory` from it.
+
+Codex and Cursor register a local checkout:
 
 ```sh
 git clone https://github.com/craig-ckc/factory.git
 cd factory
 ```
 
-Claude Code:
-
-```sh
-claude plugin marketplace add /absolute/path/to/factory
-claude plugin install factory@factory-local --scope user
-```
-
 Codex:
 
 ```sh
 codex plugin marketplace add /absolute/path/to/factory
-codex plugin add factory@factory-local
+codex plugin add factory@factory
 ```
 
 For Cursor, use `.cursor-plugin/marketplace.json` from this checkout. Refresh an existing installation after updating the source and confirm that the six skills are discovered.

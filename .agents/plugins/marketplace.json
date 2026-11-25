@@ -1,7 +1,7 @@
 {
-  "name": "factory-local",
+  "name": "factory",
   "interface": {
-    "displayName": "Factory Local"
+    "displayName": "Factory"
   },
   "plugins": [
     {

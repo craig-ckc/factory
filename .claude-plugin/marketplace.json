@@ -1,10 +1,10 @@
 {
-  "name": "factory-local",
+  "name": "factory",
   "owner": {
     "name": "Craig Chihururu"
   },
   "metadata": {
-    "description": "Local marketplace for the Factory software-delivery plugin."
+    "description": "Marketplace for the Factory software-delivery plugin."
   },
   "plugins": [
     {
