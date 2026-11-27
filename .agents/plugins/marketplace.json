@@ -7,8 +7,9 @@
     {
       "name": "factory",
       "source": {
-        "source": "local",
-        "path": "./"
+        "source": "url",
+        "url": "https://github.com/craig-ckc/factory.git",
+        "ref": "main"
       },
       "policy": {
         "installation": "AVAILABLE",
