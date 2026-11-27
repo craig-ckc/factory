@@ -1,0 +1,25 @@
+{
+  "name": "factory",
+  "version": "3.0.1",
+  "description": "Turn context into verified software through spec/review and build/verify loops, with scoped design and delivery.",
+  "author": {
+    "name": "Craig Chihururu"
+  },
+  "homepage": "https://github.com/craig-ckc/factory",
+  "keywords": [
+    "factory",
+    "workflow",
+    "spec",
+    "design",
+    "review",
+    "verify",
+    "deliver"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Factory",
+    "shortDescription": "Skills for building and shipping software",
+    "longDescription": "Six focused skills for spec/review and build/verify loops, interface acceptance, and scoped delivery.",
+    "category": "Productivity"
+  }
+}
